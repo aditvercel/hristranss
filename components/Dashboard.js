@@ -2,12 +2,29 @@ import React from "react";
 import Bar_chart from "./Bar_chart";
 import { Area_chart } from "./Area_chart";
 import { Pie_chart } from "./Pie_chart";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 
 const card = [
-  { text: "Total Employees", data_number: 12, mini_text: "Employee" },
-  { text: "Job view", data_number: 12, mini_text: "Viewer" },
-  { text: "Job applied", data_number: 12, mini_text: "Applicant" },
-  { text: "Resign Employees", data_number: 12, mini_text: "Employee" },
+  {
+    text: "Total Employees",
+    data_number: 3000,
+    mini_text: "Employee",
+    trending: false,
+  },
+  { text: "Job view", data_number: 1200, mini_text: "Viewer", trending: true },
+  {
+    text: "Job applied",
+    data_number: 1500,
+    mini_text: "Applicant",
+    trending: true,
+  },
+  {
+    text: "Resign Employees",
+    data_number: 12,
+    mini_text: "Employee",
+    trending: false,
+  },
 ];
 
 export default function Dashboard() {
@@ -23,7 +40,14 @@ export default function Dashboard() {
             <>
               <div className="h-32 w-60 border-2 rounded-lg p-4 overflow-hidden shadow-lg mt-5 mb-5">
                 <div className="grid gap-2">
-                  <div className="font-medium text-md">{item.text}</div>
+                  <div className="flex gap-2">
+                    <div className="font-medium text-md">{item.text}</div>
+                    {item.trending ? (
+                      <TrendingUpIcon sx={{ color: "green" }} />
+                    ) : (
+                      <TrendingDownIcon sx={{ color: "red" }} />
+                    )}
+                  </div>
                   <div className="font-medium text-3xl">{item.data_number}</div>
                   <div className=" text-xs">{item.mini_text}</div>
                 </div>
